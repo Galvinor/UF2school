@@ -1,0 +1,122 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    display: flex;
+    background-color: #4b71c4;
+    justify-content: center;
+}
+
+.breadcrumb {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    background-color: #cce0f1;
+}
+
+img.logo {
+    width: 100px;
+    height: 100px;
+    /* transform: rotate(1800deg);
+    transition: transform 5s; */
+}
+
+img.logo:hover {
+    transform: rotate(720deg);
+    transition: transform 2s;
+}
+
+header h1 {
+    margin: 20px;
+}
+
+aside {
+    display: flex;
+    justify-content: center;
+    gap: 200px;
+    background-color: #203a72;
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+aside ul {
+    list-style: none;
+
+}
+
+aside ul li a {
+    text-decoration: none;
+    color: #FFFFFF;
+
+}
+
+section.home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+}
+
+section.home div.text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 40px;
+    margin: 10px;
+}
+
+section.home img {
+    width: 450px;
+}
+
+section.dashboard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 40px;
+}
+
+section.badlogin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 40px;
+}
+
+article.tasklists {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px;
+}
+
+
+.overview,.lists,.tasks {
+    border: solid 2px;
+    width: 30%;
+    height: 300px;
+    padding: 20px;
+}
+
+table{
+    margin-top: 10px;
+    margin-left: 30px;
+    border: solid 1px;
+
+}
+
+th {
+    border: solid 1px;
+}
+
+td {
+    padding: 10px;
+    border: solid 1px;
+
+}
