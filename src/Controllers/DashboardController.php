@@ -33,7 +33,15 @@ class DashboardController extends Controller {
         } catch (\PDOException $e) {
             echo $e->getMessage();
         }
+
+        try {
+            $statement = $db->query("SELECT subject, course FROM subjects;");
+            $statement->execute([$user]);
+            $subjects = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
        
-        return view('dashboard', ['lists' => $lists, 'tasks' => $tasks, 'course' => $course]);
+        return view('dashboard', ['lists' => $lists, 'tasks' => $tasks, 'course' => $course, 'subjects' => $subjects]);
     }
 }

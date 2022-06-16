@@ -21,6 +21,7 @@ require('partials/header.view.php');
                             <td><?= $list; ?></td><td></td><br>
                         </tr>
                     <?php } ?>
+                    <hr>
                     <br><h4>Tasks</h4><br>
                     <?php 
                             foreach($tasks as $task) { 
@@ -32,10 +33,20 @@ require('partials/header.view.php');
                     <?php }}} ?>
                 </div>
                 <div class="lists">
-                    <div class="card">
+                    <div>
                         <h3>Manage your lists and tasks:</h3><br>
-                        <hr><br>
-                        <a href="/manager"><button>Management</button></a>
+                        <br>
+                        <a href="/manager"><button>Management</button></a><br><br><hr><br>
+                        <h3>Here are the subjects of your course:</h3><br>
+                        <?php 
+                            foreach($subjects as $subject) { 
+                        
+                            if ($course==$subject['course']){?>
+                        <tr>
+                            <td><?= $subject['subject']; ?></td><td></td><br>
+                        </tr>
+                    <?php }} ?>
+
                     </div>
                     
                 </div>

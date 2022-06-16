@@ -100,7 +100,7 @@ article.tasklists {
 .overview,.lists,.tasks {
     border: solid 2px;
     width: 30%;
-    height: 300px;
+    height: auto;
     padding: 20px;
 }
 
