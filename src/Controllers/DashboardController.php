@@ -9,7 +9,8 @@ require('src/helpers.php');
 class DashboardController extends Controller {
     
     public function index() {
-        $user = $_SESSION['user']['id'];
+        $user = $_SESSION['user']['username'];
+        $course = $_SESSION['user']['course'];
 
         if(!$user) {
             $this->redirectTo("index");
@@ -26,13 +27,13 @@ class DashboardController extends Controller {
         }
 
         try {
-            $statement = $db->query("SELECT taskname FROM tasks;");
+            $statement = $db->query("SELECT taskname, list FROM tasks;");
             $statement->execute([$user]);
-            $tasks = $statement->fetchAll(\PDO::FETCH_COLUMN, 0);
+            $tasks = $statement->fetchAll(\PDO::FETCH_ASSOC);
         } catch (\PDOException $e) {
             echo $e->getMessage();
         }
        
-        return view('dashboard', ['lists' => $lists, 'tasks' => $tasks]);
+        return view('dashboard', ['lists' => $lists, 'tasks' => $tasks, 'course' => $course]);
     }
 }

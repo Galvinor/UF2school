@@ -15,16 +15,14 @@ require('partials/header.view.php');
   <div id="listSelect">
     <h3>Select one of your task lists:</h3><br>
     <label for="listSelection">List Selection: </label>
-    <?php if ($result != NULL or isset($_SESSION['currentList'])) : ?>
-      <form action="/taskmanage" method="post">
+      <form action="/manager" method="post">
         <select name="listSelection" id="listSelection" cont="Select List">
-          <?php
-          foreach ($result as $row) { ?>
-              <option value="<?= $row; ?>"><?= $row; ?></option>
+          <?php 
+          foreach ($lists as $list) { ?>
+              <option value="<?= $list; ?>"><?= $list; ?></option>
               <?php } ?>
         </select>
         <button type="submit">Show Tasks</button>
-      <?php endif; ?>
       </form>
 
       <?php if ($tasks != NULL) : ?>

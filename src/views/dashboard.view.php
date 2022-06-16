@@ -9,27 +9,37 @@ require('partials/header.view.php');
         <br>
         <section class='dashboard'>
             <h2 id='welcome' >Welcome, recruit <?= $_SESSION['username']??'User';?>!</h2>
+            <h3>You're registered in <?= $course;?> course</h3>
 
             <article class="tasklists">
                 <div class="overview"> 
-                    <h3>Overview</h3> 
-                
+                    <h3>Overview</h3> <br>
+                    <hr><br>
+                    <h4>Lists</h4><br>
+                    <?php foreach($lists as $list) { ?>
+                        <tr>
+                            <td><?= $list; ?></td><td></td><br>
+                        </tr>
+                    <?php } ?>
+                    <br><h4>Tasks</h4><br>
+                    <?php 
+                            foreach($tasks as $task) { 
+                        foreach($lists as $list) { 
+                            if ($list==$task['list']){?>
+                        <tr>
+                            <td><?= $task['taskname']; ?></td><td></td><br>
+                        </tr>
+                    <?php }}} ?>
                 </div>
                 <div class="lists">
                     <div class="card">
-                        <h3>Manage your lists:</h3><br>
-                        <a href="/manager"><button>Task Management</button></a>
+                        <h3>Manage your lists and tasks:</h3><br>
+                        <hr><br>
+                        <a href="/manager"><button>Management</button></a>
                     </div>
                     
                 </div>
-                <div class="tasks">
-                    <h3>Tasks</h3>
-                    <div>
-                    <?= showTask($gdb,$ulist) ?>
-                    </div>
-                    <br/>
-                    <a href="?url=createtask"><button type="submit" id="create_task">Create Task</button></a>
-                </div>
+                
             </article>
         </section>
 

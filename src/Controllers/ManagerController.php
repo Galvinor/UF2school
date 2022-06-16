@@ -11,26 +11,26 @@ class ManagerController extends Controller
 
     function index()
     {
-        $user = $_SESSION['user']['id'];
+        $user = $_SESSION['user']['username'];
         $db=Registry::get('database');
         $tasks = NULL;
 
         try {
             $stmt = $db->query("SELECT listname FROM lists WHERE username=?");
             $stmt->execute([$user]);
-            $result = $stmt->fetchAll(\PDO::FETCH_COLUMN, 0);
-
+            $lists = $stmt->fetchAll(\PDO::FETCH_COLUMN, 0);
+            
         } catch (\PDOException $e) {
             echo $e->getMessage();
         }
 
         if (isset ($_POST['listSelection'])) {
 
-            $user = $_SESSION['user'];
+            $user = $_SESSION['username'];
             $listName = filter_input(INPUT_POST, 'listSelection');
         
             try {
-                $stmt = $db->query("SELECT taskName FROM task t1 INNER JOIN list t2 ON t1.listId = t2.listCode WHERE listName = ?;");
+                $stmt = $db->query("SELECT taskName FROM tasks t1 INNER JOIN lists t2 ON t1.list = t2.listname WHERE listname = ?;");
                 $stmt->execute([$listName]);
                 $tasks = $stmt->fetchAll(\PDO::FETCH_COLUMN, 0);
                 
@@ -38,17 +38,17 @@ class ManagerController extends Controller
                 echo $e->getMessage();
             } 
             try {
-                $stmt = $db->query("SELECT listCode FROM list WHERE  listName = ?");
+                $stmt = $db->query("SELECT listname FROM lists WHERE  listname = ?");
                 $stmt->execute([$listName]);
                 $listId = $stmt->fetchAll();
-                $_SESSION['currentList']=$listId[0]['listCode'];
+                $_SESSION['currentList']=$listId[0]['listname'];
         
             } catch (\PDOException $e) {
                 echo $e->getMessage();
             } 
         }
-       
-    return view('manager', ['result' => $result , 'tasks' => $tasks]);
+
+    return view('manager', ['lists' => $lists , 'tasks' => $tasks]);
     }
 
     function taskcreation(){
@@ -56,13 +56,13 @@ class ManagerController extends Controller
         if (isset ($_POST['taskname'])) {
     
             $user = $_SESSION['user']['username'];
-            $taskName = filter_input(INPUT_POST, 'taskname');
-            $currentList = $_SESSION['currentList'];
+            $taskname = filter_input(INPUT_POST, 'taskname');
+            $currentList = $_SESSION['currentList']; 
             $db=Registry::get('database');
             
             try {
-                $stmt = $db->query("INSERT INTO tasks(list, taskname) VALUES(?,?)");
-                $stmt->execute([$currentList, $taskName]);
+                $stmt = $db->query("INSERT INTO tasks (list, taskname) VALUES(?,?)");
+                $stmt->execute([$currentList, $taskname]);
             } catch (\PDOException $e) {
                 echo $e->getMessage();
             }

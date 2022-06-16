@@ -29,6 +29,7 @@ class LoginController extends Controller {
                     $_SESSION['email'] = $user['email'];
                     $_SESSION['role'] = $user['role'];
                     $_SESSION['user']=$user;
+                    $_SESSION['course'] = $user['course'];
                     return true;
                 } else {
                     return false;
