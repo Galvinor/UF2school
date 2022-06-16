@@ -72,6 +72,7 @@ class ManagerController extends Controller
     }
 
     function listcreation() {
+        
         if (isset ($_POST['listname'])) {
             $user = $_SESSION['user']['username'];
             $listName = filter_input(INPUT_POST, 'listname');

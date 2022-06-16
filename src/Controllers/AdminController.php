@@ -36,4 +36,10 @@ class AdminController extends Controller {
         return view('admin', ['users' => $users, 'subjects' => $subjects]);
     }
 
+    public function delete($id){
+        $db = Registry::get('database');
+        $statement = $db->query("DELETE * FROM users where id=$id;");
+        $statement->execute();
+    }
+
 }

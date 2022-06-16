@@ -21,8 +21,8 @@ require('partials/header.view.php');
             <td><?= $user->username; ?></td><td></td>
             <td><?= $user->email; ?></td><td></td>
             <td><?= $user->role; ?></td><td></td>
-            <td><a href="" id="<?= $user->id; ?>">UPDATE</a></td>
-            <td><a href="" id="<?= $user->id; ?>">DELETE</a></td>
+            <td><form action="/admin/update" method="POST"> <input type="hidden" value="<?= $user->id; ?>"> <button type="submit" id="<?= $user->id; ?>">UPDATE</button></td>
+            <td><form action="/admin/delete" method="POST"> <input type="hidden" value="<?= $user->id; ?>"> <button type="submit" id="<?= $user->id; ?>">DELETE</button></td>
         </tr>
     <?php } ?>
 
